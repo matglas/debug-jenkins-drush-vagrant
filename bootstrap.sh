@@ -1,13 +1,37 @@
 #!/bin/bash
 
 apt-get update
+
+
+# == Apache install ==
 apt-get install -y apache2
-apt-get install -y php5
+apt-get install -y php5 libapache2-mod-php5
+apt-get install -y php5-gd
+apt-get install -y php5-sqlite
 
-apt-get install -y jenkins jenkins-cli
+a2enmod rewrite
+service apache2 restart
 
-apt-get install -y  php-pear
 
+# == Jenkins install ==
+#apt-get install -y jenkins jenkins-cli
+
+
+# == Pear installation ==
+#apt-get install -y php-pear
+#pear upgrade PEAR
+
+# From http://jenkins-php.org/
+#pear config-set auto_discover 1
+#pear install pear.phpqatools.org/phpqatools
+
+#pear channel-discover pear.phing.info
+#pear install phing/phing
+
+#pear update
+
+
+# == Git install ==
 apt-get install -y git
 
 
