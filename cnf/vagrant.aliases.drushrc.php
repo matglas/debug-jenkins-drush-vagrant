@@ -1,6 +1,9 @@
 <?php
 
 $aliases['dev'] = array(
+  'remote-host' => 'precise64',
+  'remote-user' => 'vagrant',
+  'ssh-options' => '-i /vagrant/cnf/keys/id_dsa',
   'uri' => 'localhost',
   'root' => '/vagrant/drupal/',
 );

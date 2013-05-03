@@ -75,3 +75,13 @@ if [ ! -f $drupal_dir/sites/default/files/drupal.sqlite ]
 	cp sites/default/default.settings.php sites/default/settings.php
   drush si --db-url=sqlite://sites/default/files/drupal.sqlite -y
 fi
+
+
+# Install key on vagrant user.
+vagrant_auth_keys=/home/vagrant/.ssh/authorized_keys
+if ! grep -q "vagrant@precise64" $vagrant_auth_keys;
+	then
+	cat /vagrant/cnf/keys/id_dsa.pub >> $vagrant_auth_keys
+fi
+
+drush --alias-path=/vagrant/cnf @vagrant.dev st
