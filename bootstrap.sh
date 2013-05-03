@@ -35,15 +35,23 @@ service apache2 restart
 apt-get install -y git
 
 
-# Install drush
+# == Install drush ==
 drush_lib="/usr/local/share/drush"
-drush_drush="/usr/lib/bin/drush"
+drush_drush="/usr/local/bin/drush"
+drush_version="7.x-5.8"
 
 if [ ! -d $drush_lib ]
 	then
   git clone http://git.drupal.org/project/drush.git $drush_lib
-  cd $drush_lib
-  git checkout 7.x-5.8
+fi
+
+# Checkout version.
+cd $drush_lib
+git checkout $drush_version
+
+# Symlink drush executable.
+if [ ! -f $drush_drush ]
+	then
   ln -s $drush_lib/drush $drush_drush
 fi
 
