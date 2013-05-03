@@ -64,3 +64,14 @@ if [ ! -d $drush_kw_dir ]
 	then
   git clone $drush_kw_git $drush_kw_dir
 fi
+
+
+
+# Install drupal
+drupal_dir="/vagrant/drupal"
+if [ ! -f $drupal_dir/sites/default/files/drupal.sqlite ]
+	then
+	cd $drupal_dir
+	cp sites/default/default.settings.php sites/default/settings.php
+  drush si --db-url=sqlite://sites/default/files/drupal.sqlite -y
+fi
